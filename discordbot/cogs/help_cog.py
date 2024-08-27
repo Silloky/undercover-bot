@@ -7,7 +7,6 @@ from discordbot.helpers import command_desc, metadata
 from .helpers import register_cog
 
 
-@register_cog
 class Help(Cog):
     @Cog.listener()
     async def on_ready(self):
@@ -19,7 +18,7 @@ class Help(Cog):
         embed = Embed(title="Commands", color=Colour.blue())
         embed.set_author(
             name=bot.user.name,
-            icon_url=bot.user.avatar_url,
+            icon_url=bot.user.avatar,
             url=metadata.get("BOT_URL"),
         )
 

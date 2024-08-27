@@ -15,7 +15,6 @@ from undercover import Status, controllers
 from .helpers import register_cog
 
 
-@register_cog
 class Vote(Cog):
     @Cog.listener()
     async def on_ready(self):
