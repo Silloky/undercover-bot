@@ -1,71 +1,71 @@
 ---
-# start message
-PLAYED_WORD: "Hi, your word is **{word}**"
-PLAYING_ORDER: "Start to describe the word by order {playing_order}"
-GAME_STARTED_INSTRUCTION: "Run `{command_prefix}poll` to start an elimination poll\nWanna know how to play this game? Run `{command_prefix}howto`"
-INVALID_PLAYER_NUMBER: "The number of players should be {min_player} up to {max_player}"
-PLAYING_USER_FOUND: "{playing_users} currently playing the game in other channel"
+# message de démarrage
+PLAYED_WORD: "Bonjour, votre mot est **{word}**"
+PLAYING_ORDER: "Commencez à décrire le mot par ordre {playing_order}"
+GAME_STARTED_INSTRUCTION: "Exécutez `{command_prefix}poll` pour démarrer un sondage d'élimination\nVous voulez savoir comment jouer à ce jeu ? Exécutez `{command_prefix}howto`"
+INVALID_PLAYER_NUMBER: "Le nombre de joueurs doit être compris entre {min_player} et {max_player}"
+PLAYING_USER_FOUND: "{playing_users} jouent actuellement au jeu dans un autre canal"
 
-# eliminate message
-CIVILIAN_ELIMINATED: "{player} with role Civilian has been eliminated"
-UNDERCOVER_ELIMINATED: "{player} with role Undercover has been eliminated"
-MR_WHITE_ELIMINATED: "{player} with role Mr. White has been eliminated, waiting for Mr. White to guess..."
+# message d'élimination
+CIVILIAN_ELIMINATED: "{player} avec le rôle Civil a été éliminé"
+UNDERCOVER_ELIMINATED: "{player} avec le rôle Sous-couverture a été éliminé"
+MR_WHITE_ELIMINATED: "{player} avec le rôle Mr. White a été éliminé, en attente de la devinette de Mr. White..."
 
-# guess message
-ASK_GUESSED_WORD: "Hi Mr. White, please guess the word using `{command_prefix}guess` command"
-NOT_IN_GUESSING_TURN: "It's not yet the time for guessing"
+# message de devinette
+ASK_GUESSED_WORD: "Bonjour Mr. White, veuillez deviner le mot en utilisant la commande `{command_prefix}guess`"
+NOT_IN_GUESSING_TURN: "Ce n'est pas encore le moment de deviner"
 
-# win message
-CIVILIAN_WIN: "All intruders have been eliminated, **Civilians win**"
-NON_CIVILIAN_WIN: "There's only one Civilian left, **Undercovers and Mr. White win**"
-MR_WHITE_WIN: "There's no difficulty guessing the word, **Mr.White win**"
-SUMMARY_TITLE: "Game Summary"
+# message de victoire
+CIVILIAN_WIN: "Tous les intrus ont été éliminés, **les Civils gagnent**"
+NON_CIVILIAN_WIN: "Il ne reste qu'un Civil, **les Sous-couvertures et Mr. White gagnent**"
+MR_WHITE_WIN: "Aucune difficulté à deviner le mot, **Mr. White gagne**"
+SUMMARY_TITLE: "Résumé du jeu"
 
-# how to message
-HOW_TO_TITLE: "How to Play"
-HOW_TO_CONTENT: "0. Start with `{command_prefix}start [@username_1] [@username_2] ... [@username_n]`\n1. Check your DM and don't share your word to other players\n2. Mr. White won't get any word\n3. All players won't know others' role\n4. Describe your word by following the order\n5. Each player must describe their words\n6. Hold a poll using `{command_prefix}poll` to decide someone to be eliminated\n7. Vote someone to be eliminated by choosing the displayed button\n8. Repeat step 4-7 each turn\n9. The game will end if meets one of the conditions below"
-WIN_CONDITION_TITLE: "Win Conditions"
-WIN_CONDITION_CONTENT: "0. Mr. White guess the Civilian's word correctly (Mr. White win)\n1. Undercovers and Mr. White are eliminated (Civilians win)\n2. There is only one civilian left (Undercovers and Mr. White Win)"
+# message d'instructions
+HOW_TO_TITLE: "Comment jouer"
+HOW_TO_CONTENT: "0. Commencez avec `{command_prefix}start [@username_1] [@username_2] ... [@username_n]`\n1. Vérifiez votre DM et ne partagez pas votre mot avec les autres joueurs\n2. Mr. White ne recevra aucun mot\n3. Tous les joueurs ne connaîtront pas le rôle des autres\n4. Décrivez votre mot en suivant l'ordre\n5. Chaque joueur doit décrire son mot\n6. Organisez un sondage en utilisant `{command_prefix}poll` pour décider de l'élimination de quelqu'un\n7. Votez pour éliminer quelqu'un en utilisant `{command_prefix}vote [@username]`\n8. Répétez les étapes 4-7 à chaque tour\n9. Le jeu se termine si l'une des conditions suivantes est remplie"
+WIN_CONDITION_TITLE: "Conditions de victoire"
+WIN_CONDITION_CONTENT: "0. Mr. White devine correctement le mot des Civils (Mr. White gagne)\n1. Les Sous-couvertures et Mr. White sont éliminés (les Civils gagnent)\n2. Il ne reste qu'un seul Civil (les Sous-couvertures et Mr. White gagnent)"
 
-# poll message
-POLL_GENERATING_PROCESS: "Generating new poll..."
-POLL_STARTED: "Vote one player to be eliminated below:"
-POLL_TIMER: "Time remaining **{second}** seconds"
-POLL_COMPLETED: "Timer stopped, all players already voted"
-POLL_DECIDED: "Poll decided, waiting {player} to be eliminated..."
-ONGOING_POLL_FOUND: "There's an ongoing poll in this channel, wait it to finish first"
-ONGOING_POLL_NOT_FOUND: "There's no ongoing poll in this channel"
-EMPTY_VOTE_FOUND: "Please specify the user you want to vote"
-MULTIPLE_VOTES_FOUND: "Sorry, you can only vote one player"
-NO_VOTES_SUBMITTED: "No votes submitted, none will be eliminated"
-NOT_ENOUGH_VOTES: "No more than half players voted, none will be eliminated"
-MULTIPLE_PLAYERS_VOTED: "Multiple players voted, none will be eliminated"
-VOTE_EXISTS: "{player} has voted before, you can only vote once"
-# poll instruction
-POLL_INSTRUCTION_TITLE: "Poll Instruction"
-POLL_INSTRUCTION_CONTENT: "In the next **{poll_duration} seconds**,\n
-                           Vote **one player** by running one of these commands below!\n
+# message de sondage
+POLL_GENERATING_PROCESS: "Génération d'un nouveau sondage..."
+POLL_STARTED: "Votez pour un joueur à éliminer en suivant les instructions ci-dessous :"
+POLL_TIMER: "Temps restant **{second}** secondes"
+POLL_COMPLETED: "Minuteur arrêté, tous les joueurs ont voté"
+POLL_DECIDED: "Sondage décidé, en attente de l'élimination de {player}..."
+ONGOING_POLL_FOUND: "Il y a un sondage en cours dans ce canal, attendez qu'il se termine"
+ONGOING_POLL_NOT_FOUND: "Il n'y a pas de sondage en cours dans ce canal"
+EMPTY_VOTE_FOUND: "Veuillez spécifier l'utilisateur que vous souhaitez voter"
+MULTIPLE_VOTES_FOUND: "Désolé, vous ne pouvez voter qu'un seul joueur"
+NO_VOTES_SUBMITTED: "Aucun vote soumis, personne ne sera éliminé"
+NOT_ENOUGH_VOTES: "Moins de la moitié des joueurs ont voté, personne ne sera éliminé"
+MULTIPLE_PLAYERS_VOTED: "Plusieurs joueurs ont été votés, personne ne sera éliminé"
+VOTE_EXISTS: "{player} a déjà voté, vous ne pouvez voter qu'une seule fois"
+# instructions de sondage
+POLL_INSTRUCTION_TITLE: "Instructions de sondage"
+POLL_INSTRUCTION_CONTENT: "Dans les **{poll_duration} secondes** suivantes,\n
+                           Votez **un joueur** en exécutant l'une des commandes ci-dessous !\n
                            \n
-                           **YOU CAN ONLY VOTE ONCE**\n
+                           **VOUS NE POUVEZ VOTER QU'UNE SEULE FOIS**\n
                            \n
                            {commands}"
-# poll status
-POLL_STATUS_TITLE: "Poll Status"
-POLL_STATUS_VOTED_PLAYER_INFO: "<@{user_id}> is voted by **{vote_count}** people ({voters})"
-# poll result
-POLL_RESULT_TITLE: "Poll Result"
-POLL_RESULT_VOTED_PLAYER_INFO: "<@{user_id}> is voted by **{vote_count}** people ({voters})"
-POLL_RESULT_INFO: "Total alive players: **{total_alive_players}**"
-POLL_RESULT_NO_VOTES_SUBMITTED: "No votes submitted"
+# statut du sondage
+POLL_STATUS_TITLE: "Statut du sondage"
+POLL_STATUS_VOTED_PLAYER_INFO: "<@{user_id}> est voté par **{vote_count}** personnes ({voters})"
+# résultat du sondage
+POLL_RESULT_TITLE: "Résultat du sondage"
+POLL_RESULT_VOTED_PLAYER_INFO: "<@{user_id}> est voté par **{vote_count}** personnes ({voters})"
+POLL_RESULT_INFO: "Nombre total de joueurs vivants : **{total_alive_players}**"
+POLL_RESULT_NO_VOTES_SUBMITTED: "Aucun vote soumis"
 
-# clear game message
-GAME_CLEARED: "The game in this channel has been cleared"
+# message de réinitialisation du jeu
+GAME_CLEARED: "Le jeu dans ce canal a été réinitialisé"
 
-# common error message
-GUILD_ONLY_COMMAND: "You can only run this command in a server"
-DM_ONLY_COMMAND: "You can only run this command in a direct message"
-BOT_PLAYER_FOUND: "Sorry, bots are not allowed to join the game"
-ONGOING_GAME_FOUND: "There's an ongoing game in this channel, finish it first"
-ONGOING_GAME_NOT_FOUND: "There's no ongoing game in this channel"
-PLAYER_NOT_FOUND: "{player} is not playing in this channel"
-PLAYER_ALREADY_KILLED: "{player} has been eliminated before"
+# message d'erreur commun
+GUILD_ONLY_COMMAND: "Vous ne pouvez exécuter cette commande que dans un serveur"
+DM_ONLY_COMMAND: "Vous ne pouvez exécuter cette commande que dans un message direct"
+BOT_PLAYER_FOUND: "Désolé, les bots ne sont pas autorisés à rejoindre le jeu"
+ONGOING_GAME_FOUND: "Il y a un jeu en cours dans ce canal, terminez-le d'abord"
+ONGOING_GAME_NOT_FOUND: "Il n'y a pas de jeu en cours dans ce canal"
+PLAYER_NOT_FOUND: "{player} ne joue pas dans ce canal"
+PLAYER_ALREADY_KILLED: "{player} a déjà été éliminé"

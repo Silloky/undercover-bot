@@ -1,15 +1,15 @@
 ---
 START: "```{command_prefix}start [@username_1] [@username_2] ... [@username_n]```
-        Plays the game with all of the mentioned usernames."
+        Lance le jeu avec tous les noms d'utilisateur mentionnés."
 POLL: "```{command_prefix}poll```
-       Holds a poll to vote who will be eliminated in the current turn."
+       Organise un sondage pour voter qui sera éliminé au tour actuel."
 VOTE: "```{command_prefix}vote [@username]```
-       Votes the mentioned username to be eliminated in the current ongoing poll."
-GUESS: "```{command_prefix}guess [word]```
-        Guesses the civilian's word by Mr. White right after being eliminated."
+       Vote pour le nom d'utilisateur mentionné pour être éliminé dans le sondage en cours."
+GUESS: "```{command_prefix}guess [mot]```
+        Devine le mot du civil par Mr. White juste après avoir été éliminé."
 HELP: "```{command_prefix}help```
-       Displays list of available commands."
+       Affiche la liste des commandes disponibles."
 HOWTO: "```{command_prefix}howto```
-        Displays how to play the game guide."
+        Affiche le guide de jeu."
 CLEAR: "```{command_prefix}clear```
-        Clears any ongoing game in the current channel."
+        Efface toute partie en cours dans le canal actuel."
