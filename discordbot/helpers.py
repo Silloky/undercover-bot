@@ -4,10 +4,10 @@ import yaml
 
 from .errors import BotPlayerFound
 
-command_desc_file = open("commands.yaml", "r")
+command_desc_file = open("commands.yaml", "r", encoding='utf-8')
 command_desc = yaml.load(command_desc_file, Loader=yaml.BaseLoader)
 
-messages_file = open("messages.yaml", "r")
+messages_file = open("messages.yaml", "r", encoding='utf-8')
 messages = yaml.load(messages_file, Loader=yaml.BaseLoader)
 
 metadata_file = open("metadata.yaml", "r")
