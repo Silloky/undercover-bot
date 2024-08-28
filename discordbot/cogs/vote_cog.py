@@ -12,8 +12,6 @@ from discordbot.helpers import (
 )
 from undercover import Status, controllers
 
-
-# @register_cog
 class Vote(Cog):
     @Cog.listener()
     async def on_ready(self):

@@ -1,5 +1,5 @@
 from discordbot import bot
 
 
-def register_cog(cog_cls):
-    bot.add_cog(cog_cls(bot))
+async def register_cog(cog_cls):
+    await bot.add_cog(cog_cls(bot))
