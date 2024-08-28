@@ -1,62 +1,67 @@
-from discord import Colour, Embed
-from discord.ext.commands import Cog, command, errors, guild_only
+import math
+from typing import Callable, Coroutine
 
-from discordbot.errors import EmptyVoteFound, MultipleVotesFound
+from discord import ButtonStyle, Colour, Embed, Interaction, TextChannel
+from discord.ui import Button, View
+
 from discordbot.helpers import (
     MessageKey,
-    command_desc,
     generate_mention,
     generate_message,
-    retrieve_player_ids,
     send_message,
 )
 from undercover import Status, controllers
 
-class Vote(Cog):
-    @Cog.listener()
-    async def on_ready(self):
-        print(f"{type(self).__name__} cog ready")
 
-    @Cog.listener()
-    async def on_command_error(self, ctx, error):
-        if isinstance(error, errors.CommandInvokeError):
-            if isinstance(error.original, MultipleVotesFound):
-                await ctx.send(
-                    generate_message(MessageKey.MULTIPLE_VOTES_FOUND)
+class PollItem:
+    def __init__(self, item_id: str, label: str):
+        self.item_id = item_id
+        self.label = label
+
+
+class PollView(View):
+    MAX_NUM_COLUMNS = 5
+
+    def __init__(self, poll_items: [PollItem]):
+        super().__init__()
+        num_rows = math.ceil(len(poll_items) / PollView.MAX_NUM_COLUMNS)
+        for col in range(min(len(poll_items), PollView.MAX_NUM_COLUMNS)):
+            for row in range(num_rows):
+                i = row * PollView.MAX_NUM_COLUMNS + col
+                self.add_item(
+                    PollButton(poll_items[i], row, VoteHandler.handle_vote)
                 )
-            if isinstance(error.original, EmptyVoteFound):
-                await ctx.send(generate_message(MessageKey.EMPTY_VOTE_FOUND))
 
-    @command(name="vote", description=command_desc.get("VOTE"))
-    @guild_only()
-    async def handle_vote(self, ctx):
-        """Votes the mentioned username to be eliminated in the current ongoing poll."""
-        await VoteHandler.handle_vote(ctx)
+
+class PollButton(Button):
+    def __init__(
+        self,
+        poll_item: PollItem,
+        row: int,
+        inner_callback: Callable[[TextChannel, str, str], Coroutine],
+    ):
+        super().__init__(
+            style=ButtonStyle.secondary, label=poll_item.label, row=row
+        )
+        self.poll_item = poll_item
+        self.inner_callback = inner_callback
+
+    async def callback(self, interaction: Interaction):
+        await self.inner_callback(
+            interaction.channel, self.poll_item.item_id, interaction.user.id
+        )
 
 
 class VoteHandler:
     @staticmethod
-    async def handle_vote(ctx):
-        voted_user_id = VoteHandler.get_voted_user_id(ctx)
+    async def handle_vote(
+        channel: TextChannel, voted_user_id: str, voter_user_id: str
+    ):
         game_states = controllers.vote_player(
-            ctx.channel.id, voted_user_id, ctx.author.id
+            channel.id, voted_user_id, voter_user_id
         )
         handler = VoteHandler.get_handler(game_states[0])
-        await handler(ctx, game_states[0])
-
-    @staticmethod
-    def get_voted_user_id(ctx):
-        voted_ids = retrieve_player_ids(ctx, include_author=False)
-        if VoteHandler.voted_user_id_valid(voted_ids):
-            return voted_ids[0]
-
-    @staticmethod
-    def voted_user_id_valid(voted_ids):
-        if len(voted_ids) > 1:
-            raise MultipleVotesFound
-        elif len(voted_ids) == 0:
-            raise EmptyVoteFound
-        return True
+        await handler(channel, game_states[0])
 
     @staticmethod
     def get_handler(game_state):
@@ -71,17 +76,17 @@ class VoteHandler:
         return handlers.get(game_state.status.name)
 
     @staticmethod
-    async def handle_invalid_vote(ctx, game_state, user_id_key="player"):
+    async def handle_invalid_vote(channel, game_state, user_id_key="player"):
         if game_state.data is not None and user_id_key in game_state.data:
-            await send_message(ctx, game_state, user_id_key)
+            await send_message(channel, game_state, user_id_key)
         else:
-            await send_message(ctx, game_state)
+            await send_message(channel, game_state)
 
     @staticmethod
     async def handle_success_vote(ctx, game_state):
         poll_msg = await ctx.fetch_message(game_state.data["msg_id"])
-        status_embed = VoteHandler.generate_status_embed(game_state)
-        await poll_msg.edit(embed=status_embed)
+        embed = VoteHandler.generate_status_embed(game_state)
+        await poll_msg.edit(embed=embed)
 
     @staticmethod
     def generate_status_embed(game_state):
