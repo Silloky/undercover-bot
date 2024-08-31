@@ -44,7 +44,7 @@ def poll_started(func):
 
 
 class PollWorker:
-    POLL_DURATION = 30  # seconds
+    POLL_DURATION = 60  # seconds
 
     def __init__(self, ctx):
         self.ctx = ctx
@@ -106,7 +106,7 @@ class PollWorker:
             view=PollView(poll_items),
         )
 
-        await asyncio.wait([self.timer()], return_when=asyncio.FIRST_COMPLETED)
+        await asyncio.wait([asyncio.create_task(self.timer())], return_when=asyncio.FIRST_COMPLETED)
 
     async def handle_decided_poll(self, game_state):
         result_embed = self.generate_result_embed(game_state, Colour.green())
