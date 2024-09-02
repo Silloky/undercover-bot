@@ -1,26 +1,11 @@
-from sqlalchemy import Column, Integer, String
-from sqlalchemy.sql.expression import func
+import json
+import random
 
-from .database import Base, add_session
+wordSets = json.load(open("secretWords.json", "r", encoding='utf-8'))
 
-
-class SecretWord(Base):
-    __tablename__ = "secret_word"
-
-    id = Column(Integer, autoincrement=True, primary_key=True)
-    # temporary workaround due to unsupported ARRAY in SQLite
-    __related_words = Column("related_words", String, nullable=False)
-    related_words = []
-
-    def __init__(self, related_words):
-        self.__related_words = str(related_words)
-        self.related_words = related_words
-
+class SecretWord():
+    def __init__(self):
+        self.related_words = random.choice(json.load(open("secretWords.json", "r", encoding='utf-8')))
     @classmethod
-    @add_session
-    def get_random(cls, session):
-        secret_word = SecretWord([])
-        while len(secret_word.related_words) < 2:
-            secret_word = session.query(cls).order_by(func.random()).first()
-            secret_word.related_words = eval(secret_word.__related_words)
-        return secret_word
+    def get_random(cls): 
+        return cls()
